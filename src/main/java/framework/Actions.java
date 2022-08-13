@@ -1,5 +1,6 @@
 package framework;
 
+import objectrepo.ObjectBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -36,5 +37,23 @@ public class Actions {
 
     public String getText(By by) {
         return driver.findElement(by).getText();
+    }
+
+    public By getElementBy(ObjectBy objectBy,String value) {
+        if(objectBy.equals(objectBy.XPATH)){
+            return By.xpath(value);
+        }
+        if(objectBy.equals(objectBy.ID)){
+            return By.id(value);
+        }
+        try {
+            throw new Exception("Invalid locator");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void type(By by,String value) {
+        driver.findElement(by).sendKeys(value);
     }
 }

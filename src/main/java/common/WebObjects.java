@@ -1,4 +1,4 @@
-package objectrepo;
+package common;
 
 public enum WebObjects {
     //Registration Test Case
@@ -20,5 +20,5 @@ public enum WebObjects {
     SELECT_COLOR,
     SELECT_SIZE,
     ADD_TO_CART_BUTTON,
-    GRAND_PRICE
+    CONFIRMATION_PASSWORD_INPUT, GRAND_PRICE
     }

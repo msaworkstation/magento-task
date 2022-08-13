@@ -9,4 +9,12 @@ public class WebObjectValue {
         this.by = by;
         this.locatorValue = locatorValue;
     }
+
+    public ObjectBy getBy() {
+        return by;
+    }
+
+    public String getLocatorValue() {
+        return locatorValue;
+    }
 }
