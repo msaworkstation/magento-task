@@ -1,1 +1,2 @@
-# magento-task
+# Magento Automation Project
+
