@@ -1,6 +1,6 @@
 import common.TestCaseID;
 import common.WebObjects;
-import framework.Actions;
+import framework.FrameworkActions;
 import objectrepo.ObjectDataReader;
 import objectrepo.WebObjectValue;
 import org.openqa.selenium.By;
@@ -12,88 +12,182 @@ import org.testng.annotations.Test;
 import testdata.TestDataReader;
 
 import static common.TestCaseID.TS001;
+import static common.TestCaseID.TS002;
 import static common.WebObjects.*;
+import static testdata.TestData.PROD;
 
 public class MainTest {
     static {
-        System.setProperty("webdriver.chrome.driver","/home/seceng/Downloads/chromedriver_linux64/chromedriver");
+        // TODO: ADD the path for chrome driver
+        System.setProperty("webdriver.chrome.driver", "");
     }
 
     protected WebDriver driver = new ChromeDriver();
-    Actions actions = new Actions(driver);
+    FrameworkActions frameworkActions = new FrameworkActions(driver);
 
     @Test
-    public void registration(){
-        actions.open("http://magento-demo.lexiconn.com/");
+    public void registration() {
+        frameworkActions.open("http://magento-demo.lexiconn.com/");
+        TestCaseID testCaseID = TS001;
         WebObjectValue accountLink = ObjectDataReader
                 .getObjectData()
-                .get(TS001)
-                .get(WebObjects.ACCOUNT_LINK);
-        By accountLinkBy = actions.getElementBy(accountLink.getBy(), accountLink.getLocatorValue());
-        actions.click(accountLinkBy);
+                .get(testCaseID)
+                .get(ACCOUNT_LINK);
+        By accountLinkBy = frameworkActions.getElementBy(accountLink.getBy(), accountLink.getLocatorValue());
+        frameworkActions.click(accountLinkBy);
 
         WebObjectValue registerLink = ObjectDataReader
                 .getObjectData()
-                .get(TS001)
+                .get(testCaseID)
                 .get(REGISTER_LINK);
-        By registerLinkBy = actions.getElementBy(registerLink.getBy(), registerLink.getLocatorValue());
-        actions.click(registerLinkBy);
+        By registerLinkBy = frameworkActions.getElementBy(registerLink.getBy(), registerLink.getLocatorValue());
+        frameworkActions.click(registerLinkBy);
 
         WebObjectValue fname = ObjectDataReader
                 .getObjectData()
-                .get(TS001)
+                .get(testCaseID)
                 .get(WebObjects.FNAME_INPUT);
-        By fnameBy = actions.getElementBy(fname.getBy(), fname.getLocatorValue());
-        actions.waitForElement(fnameBy,5);
-        actions.type(fnameBy, TestDataReader.getProdTestData().get(TS001).get(FNAME_INPUT));
+        By fnameBy = frameworkActions.getElementBy(fname.getBy(), fname.getLocatorValue());
+        frameworkActions.waitForElement(fnameBy, 5);
+        frameworkActions.type(fnameBy, TestDataReader.getProdTestData().get(PROD).get(FNAME_INPUT));
 
         WebObjectValue lname = ObjectDataReader
                 .getObjectData()
-                .get(TS001)
+                .get(testCaseID)
                 .get(LNAME_INPUT);
-        By lastnameBy = actions.getElementBy(lname.getBy(), lname.getLocatorValue());
-        actions.type(lastnameBy, TestDataReader.getProdTestData().get(TS001).get(LNAME_INPUT));
+        By lastnameBy = frameworkActions.getElementBy(lname.getBy(), lname.getLocatorValue());
+        frameworkActions.type(lastnameBy, TestDataReader.getProdTestData().get(PROD).get(LNAME_INPUT));
 
         WebObjectValue email = ObjectDataReader
                 .getObjectData()
-                .get(TS001)
+                .get(testCaseID)
                 .get(EMAIL_INPUT);
-        By emailBy = actions.getElementBy(email.getBy(), email.getLocatorValue());
-        actions.type(emailBy, TestDataReader.getProdTestData().get(TS001).get(EMAIL_INPUT));
+        By emailBy = frameworkActions.getElementBy(email.getBy(), email.getLocatorValue());
+        frameworkActions.type(emailBy, TestDataReader.getProdTestData().get(PROD).get(EMAIL_INPUT));
 
         WebObjectValue password = ObjectDataReader
                 .getObjectData()
-                .get(TS001)
+                .get(testCaseID)
                 .get(PASSWORD_INPUT);
-        By passwordBy = actions.getElementBy(password.getBy(), password.getLocatorValue());
-        actions.type(passwordBy, TestDataReader.getProdTestData().get(TS001).get(PASSWORD_INPUT));
+        By passwordBy = frameworkActions.getElementBy(password.getBy(), password.getLocatorValue());
+        frameworkActions.type(passwordBy, TestDataReader.getProdTestData().get(PROD).get(PASSWORD_INPUT));
 
         WebObjectValue confPassword = ObjectDataReader
                 .getObjectData()
-                .get(TS001)
+                .get(testCaseID)
                 .get(CONFIRMATION_PASSWORD_INPUT);
-        By confPasswordBy = actions.getElementBy(confPassword.getBy(), confPassword.getLocatorValue());
-        actions.type(confPasswordBy, TestDataReader.getProdTestData().get(TS001).get(PASSWORD_INPUT));
+        By confPasswordBy = frameworkActions.getElementBy(confPassword.getBy(), confPassword.getLocatorValue());
+        frameworkActions.type(confPasswordBy, TestDataReader.getProdTestData().get(PROD).get(PASSWORD_INPUT));
 
         WebObjectValue registerButton = ObjectDataReader
                 .getObjectData()
-                .get(TS001)
+                .get(testCaseID)
                 .get(REGISTER_BUTTON);
-        By registerButtonBy = actions.getElementBy(registerButton.getBy(), registerButton.getLocatorValue());
-        actions.click(registerButtonBy);
+        By registerButtonBy = frameworkActions.getElementBy(registerButton.getBy(), registerButton.getLocatorValue());
+        frameworkActions.click(registerButtonBy);
 
         WebObjectValue registertext = ObjectDataReader
                 .getObjectData()
-                .get(TS001)
+                .get(testCaseID)
                 .get(ASSERTIONS_TEXT);
-        By registertextBy = actions.getElementBy(registertext.getBy(), registertext.getLocatorValue());
-        actions.waitForElement(registertextBy,5);
-        Assert.assertEquals(actions.getText(registertextBy),TestDataReader.getProdTestData().get(TS001).get(ASSERTIONS_TEXT));
+        By registertextBy = frameworkActions.getElementBy(registertext.getBy(), registertext.getLocatorValue());
+        frameworkActions.waitForElement(registertextBy, 5);
+        Assert.assertEquals(frameworkActions.getText(registertextBy), TestDataReader.getProdTestData().get(PROD).get(ASSERTIONS_TEXT));
     }
-    
+
+    @Test
+    public void budgetCheck() {
+        frameworkActions.open("http://magento-demo.lexiconn.com/");
+        TestCaseID testCaseID = TS002;
+        WebObjectValue accountLink = ObjectDataReader
+                .getObjectData()
+                .get(testCaseID)
+                .get(ACCOUNT_LINK);
+        By accountLinkBy = frameworkActions.getElementBy(accountLink.getBy(), accountLink.getLocatorValue());
+        frameworkActions.click(accountLinkBy);
+
+        WebObjectValue logInLink = ObjectDataReader
+                .getObjectData()
+                .get(testCaseID)
+                .get(LOG_IN_LINK);
+        By logInLinkBy = frameworkActions.getElementBy(logInLink.getBy(), logInLink.getLocatorValue());
+        frameworkActions.click(logInLinkBy);
+
+        WebObjectValue email = ObjectDataReader
+                .getObjectData()
+                .get(testCaseID)
+                .get(EMAIL_INPUT);
+        By emailBy = frameworkActions.getElementBy(email.getBy(), email.getLocatorValue());
+        frameworkActions.type(emailBy, TestDataReader.getProdTestData().get(PROD).get(EMAIL_INPUT));
+
+        WebObjectValue password = ObjectDataReader
+                .getObjectData()
+                .get(testCaseID)
+                .get(PASSWORD_INPUT);
+        By passwordBy = frameworkActions.getElementBy(password.getBy(), password.getLocatorValue());
+        frameworkActions.type(passwordBy, TestDataReader.getProdTestData().get(PROD).get(PASSWORD_INPUT));
+
+        WebObjectValue loginButton = ObjectDataReader
+                .getObjectData()
+                .get(testCaseID)
+                .get(LOG_IN_BUTTON);
+        By loginButtonBy = frameworkActions.getElementBy(loginButton.getBy(), loginButton.getLocatorValue());
+        frameworkActions.click(loginButtonBy);
+
+        WebObjectValue menLink = ObjectDataReader
+                .getObjectData()
+                .get(testCaseID)
+                .get(MEN_LINK);
+        By menLinkBy = frameworkActions.getElementBy(menLink.getBy(), menLink.getLocatorValue());
+        frameworkActions.hover(menLinkBy);
+
+        WebObjectValue shirtsLink = ObjectDataReader
+                .getObjectData()
+                .get(testCaseID)
+                .get(SHIRTS_LINK);
+        By shirtsLinkBy = frameworkActions.getElementBy(shirtsLink.getBy(), shirtsLink.getLocatorValue());
+        frameworkActions.click(shirtsLinkBy);
+
+        WebObjectValue firstItemLink = ObjectDataReader
+                .getObjectData()
+                .get(testCaseID)
+                .get(FIRST_ITEM_LINK);
+        By firstItemLinkBy = frameworkActions.getElementBy(firstItemLink.getBy(), firstItemLink.getLocatorValue());
+        frameworkActions.click(firstItemLinkBy);
+
+        WebObjectValue colorSelect = ObjectDataReader
+                .getObjectData()
+                .get(testCaseID)
+                .get(SELECT_COLOR);
+        By colorSelectBy = frameworkActions.getElementBy(colorSelect.getBy(), colorSelect.getLocatorValue());
+        frameworkActions.selectByText(colorSelectBy, TestDataReader.getProdTestData().get(PROD).get(SELECT_COLOR));
+
+        WebObjectValue sizeSelect = ObjectDataReader
+                .getObjectData()
+                .get(testCaseID)
+                .get(SELECT_SIZE);
+        By sizeSelectBy = frameworkActions.getElementBy(sizeSelect.getBy(), sizeSelect.getLocatorValue());
+        frameworkActions.selectByText(sizeSelectBy, TestDataReader.getProdTestData().get(PROD).get(SELECT_SIZE));
+
+        WebObjectValue addToCartButton = ObjectDataReader
+                .getObjectData()
+                .get(testCaseID)
+                .get(ADD_TO_CART_BUTTON);
+        By addToCartButtonBy = frameworkActions.getElementBy(addToCartButton.getBy(), addToCartButton.getLocatorValue());
+        frameworkActions.click(addToCartButtonBy);
+
+        WebObjectValue grandPriceButton = ObjectDataReader
+                .getObjectData()
+                .get(testCaseID)
+                .get(GRAND_PRICE);
+        By grandPriceButtonBy = frameworkActions.getElementBy(grandPriceButton.getBy(), grandPriceButton.getLocatorValue());
+        Assert.assertTrue(
+                Double.parseDouble(frameworkActions.getAttribute(grandPriceButtonBy,"innerHTML").replace("$",""))
+                        < Double.parseDouble(TestDataReader.getProdTestData().get(PROD).get(GRAND_PRICE)));
+    }
+
     @AfterTest
-    void close() throws InterruptedException {
-        Thread.sleep(1000);
+    void close() {
         driver.quit();
     }
 }

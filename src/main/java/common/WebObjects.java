@@ -16,7 +16,7 @@ public enum WebObjects {
     LOG_IN_BUTTON,
     MEN_LINK,
     SHIRTS_LINK,
-    FIRST_ITEM,
+    FIRST_ITEM_LINK,
     SELECT_COLOR,
     SELECT_SIZE,
     ADD_TO_CART_BUTTON,
