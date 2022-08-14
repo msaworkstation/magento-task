@@ -19,7 +19,7 @@ import static testdata.TestData.PROD;
 public class MainTest {
     static {
         // TODO: ADD the path for chrome driver
-        System.setProperty("webdriver.chrome.driver", "/home/seceng/Downloads/chromedriver_linux64/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "");
     }
 
     protected WebDriver driver = new ChromeDriver();

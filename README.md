@@ -1,6 +1,6 @@
 # Magento Automation Project
 
-## Run MainTest to get the results for the following tasks.
+## Add ChromeDriver path MainTest and run to get the results for the following tasks.
 
 ## Task 1:
     - MainTest.registration
