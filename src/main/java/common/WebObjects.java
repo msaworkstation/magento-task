@@ -21,4 +21,4 @@ public enum WebObjects {
     SELECT_SIZE,
     ADD_TO_CART_BUTTON,
     CONFIRMATION_PASSWORD_INPUT, GRAND_PRICE
-    }
+}

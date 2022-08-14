@@ -68,4 +68,8 @@ public class FrameworkActions {
         WebElement webElement = driver.findElement(by);
         action.moveToElement(webElement).build().perform();
     }
+
+    public void clearCookies() {
+        driver.manage().deleteAllCookies();
+    }
 }
